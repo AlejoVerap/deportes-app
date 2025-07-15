@@ -26,7 +26,6 @@ function App() {
           </RutaPrivada>
         }>
           <Route index element={<Dashboard />} />
-          <Route path="usuarios" element={<Usuarios />} />
           <Route path="escenarios" element={<Escenarios />} />
           <Route path="reservas" element={<Reservas />} />
           <Route path="reportes" element={<Reportes />} />
