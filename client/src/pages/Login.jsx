@@ -24,15 +24,14 @@ function Login() {
       localStorage.setItem('token', data.token);
       localStorage.setItem('lastUser', correo);
       // Redirigir según el rol
-      if (data.usuario && data.usuario.rol === 'superadmin') {
+      if (data.usuario && (data.usuario.rol === 'superadmin' || data.usuario.rol === 'admin')) {
         navigate('/admin');
         setError('');
-        alert('¡Bienvenido, superadministrador!');
-      } else if (data.usuario && data.usuario.rol === 'admin') {
-        navigate('/admin');
-        setError('');
+        if (data.usuario.rol === 'superadmin') {
+          alert('¡Bienvenido, superadministrador!');
+        }
       } else {
-        navigate('/admin/escenarios');
+        navigate('/usuario');
       }
     } catch (err) {
       setError('Correo o contraseña incorrectos.');

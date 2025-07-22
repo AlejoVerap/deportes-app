@@ -6,7 +6,7 @@ export const obtenerUsuarios = async () => {
   const token = localStorage.getItem('token');
   const res = await axios.get(API_URL, {
     headers: {
-      'Authorization': `Bearer ${token}`,
+      'Authorization': token,
     },
   });
   return res.data;

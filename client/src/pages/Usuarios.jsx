@@ -72,54 +72,59 @@ const Usuarios = () => {
   return (
     <div>
       <h2 className="mb-4">Gestión de Usuarios</h2>
+      <div style={{ color: 'orange', fontWeight: 700 }}>DEBUG: Render Usuarios.jsx</div>
+      <div style={{ color: 'orange', fontWeight: 700 }}>DEBUG: rol detectado: {rol || 'ninguno'}</div>
       {error && <div className="alert alert-danger">{error}</div>}
       {loading ? (
-        <p>Cargando usuarios...</p>
+        <p style={{ color: 'orange' }}>DEBUG: Cargando usuarios...</p>
       ) : (
-        <table className="table table-bordered table-hover">
-          <thead className="table-dark">
-            <tr>
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Teléfono</th>
-              <th>Rol</th>
-              <th>Edad</th>
-              <th>Género</th>
-              <th>Escenario Deportivo</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usuarios.map((usuario, index) => (
-              <tr key={usuario._id}>
-                <td>{index + 1}</td>
-                <td>{usuario.nombre}</td>
-                <td>{usuario.correo}</td>
-                <td>{usuario.telefono}</td>
-                <td>{usuario.rol}</td>
-                <td>{usuario.edad || '-'}</td>
-                <td>{usuario.genero || '-'}</td>
-                <td>{usuario.escenarioDeportivo || '-'}</td>
-                <td>
-                  {/* Solo superadmin puede cambiar rol o eliminar */}
-                  {rol === 'superadmin' ? (
-                    <>
-                      <button className="btn btn-sm btn-secondary me-2" onClick={() => handleCambioRol(usuario._id, usuario.rol)} disabled={cargandoRol === usuario._id}>
-                        {cargandoRol === usuario._id ? 'Cambiando...' : usuario.rol === 'admin' ? 'Cambiar a Usuario' : 'Cambiar a Admin'}
-                      </button>
-                      <button className="btn btn-sm btn-danger" onClick={() => handleEliminar(usuario._id)} disabled={eliminandoId === usuario._id}>
-                        {eliminandoId === usuario._id ? 'Eliminando...' : 'Eliminar'}
-                      </button>
-                    </>
-                  ) : (
-                    <span className="text-muted">Sin permisos</span>
-                  )}
-                </td>
+        <>
+          <div style={{ color: 'orange', fontWeight: 700 }}>DEBUG: usuarios.length = {usuarios.length}</div>
+          <table className="table table-bordered table-hover">
+            <thead className="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Edad</th>
+                <th>Género</th>
+                <th>Escenario Deportivo</th>
+                <th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {usuarios.map((usuario, index) => (
+                <tr key={usuario._id}>
+                  <td>{index + 1}</td>
+                  <td>{usuario.nombre}</td>
+                  <td>{usuario.correo}</td>
+                  <td>{usuario.telefono}</td>
+                  <td>{usuario.rol}</td>
+                  <td>{usuario.edad || '-'}</td>
+                  <td>{usuario.genero || '-'}</td>
+                  <td>{usuario.escenarioDeportivo || '-'}</td>
+                  <td>
+                    {/* Solo superadmin puede cambiar rol o eliminar */}
+                    {rol === 'superadmin' ? (
+                      <>
+                        <button className="btn btn-sm btn-secondary me-2" onClick={() => handleCambioRol(usuario._id, usuario.rol)} disabled={cargandoRol === usuario._id}>
+                          {cargandoRol === usuario._id ? 'Cambiando...' : usuario.rol === 'admin' ? 'Cambiar a Usuario' : 'Cambiar a Admin'}
+                        </button>
+                        <button className="btn btn-sm btn-danger" onClick={() => handleEliminar(usuario._id)} disabled={eliminandoId === usuario._id}>
+                          {eliminandoId === usuario._id ? 'Eliminando...' : 'Eliminar'}
+                        </button>
+                      </>
+                    ) : (
+                      <span className="text-muted">Sin permisos</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       )}
     </div>
   );

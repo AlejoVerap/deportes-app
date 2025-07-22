@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const RutaPrivada = ({ adminOnly }) => {
   const token = localStorage.getItem('token');
@@ -10,8 +10,9 @@ const RutaPrivada = ({ adminOnly }) => {
       rol = payload.rol;
     } catch {}
   }
-  if (!token) return <Navigate to="/login" replace />;
-  if (adminOnly && rol !== 'admin') return <Navigate to="/admin/escenarios" replace />;
+  const location = useLocation();
+  if (!token) return <Navigate to="/login" state={{ from: location }} replace />;
+  if (adminOnly && rol !== 'admin' && rol !== 'superadmin') return <Navigate to="/usuario" replace />;
   return <Outlet />;
 };
 

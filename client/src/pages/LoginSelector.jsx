@@ -19,7 +19,7 @@ function LoginSelector() {
           <p className="text-muted mb-0" style={{ fontSize: 15 }}>Selecciona el tipo de acceso</p>
         </div>
         <button className="btn w-100 mb-3" style={{ background: 'linear-gradient(90deg, #4f8cff 0%, #6ee7b7 100%)', color: '#fff', fontWeight: 600, borderRadius: 8, boxShadow: '0 2px 8px #4f8cff33' }} onClick={() => navigate('/login')}>Acceso Usuario</button>
-        <button className="btn w-100" style={{ background: '#2563eb', color: '#fff', fontWeight: 600, borderRadius: 8, boxShadow: '0 2px 8px #4f8cff33' }} onClick={() => navigate('/admin')}>Acceso Administrativo</button>
+        <button className="btn w-100" style={{ background: '#2563eb', color: '#fff', fontWeight: 600, borderRadius: 8, boxShadow: '0 2px 8px #4f8cff33' }} onClick={() => navigate('/login')}>Acceso Administrativo</button>
       </div>
     </div>
   );

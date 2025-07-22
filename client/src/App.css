@@ -1,3 +1,69 @@
+/* Modal de confirmación para Reservas */
+.modal-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 2rem 2.5rem;
+  min-width: 320px;
+  text-align: center;
+  animation: modalIn 0.2s;
+}
+
+.modal-content h4 {
+  margin-bottom: 1.2rem;
+  color: #333;
+}
+
+.modal-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.modal-btns button {
+  min-width: 100px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.modal-btns .confirm {
+  background: #198754;
+  color: #fff;
+}
+.modal-btns .confirm:hover {
+  background: #157347;
+}
+.modal-btns .cancel {
+  background: #dc3545;
+  color: #fff;
+}
+.modal-btns .cancel:hover {
+  background: #b52a37;
+}
+
+@keyframes modalIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
 .App {
   text-align: center;
 }

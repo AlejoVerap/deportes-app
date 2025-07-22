@@ -1,10 +1,13 @@
+
 import React, { useEffect, useState } from 'react';
 import { obtenerReservasAdmin, cambiarEstadoReserva } from '../services/reservaService';
+import '../App.css';
 
 const Reservas = () => {
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [modal, setModal] = useState({ open: false, id: null, estado: '', mensaje: '' });
 
   useEffect(() => {
     const cargarReservas = async () => {
@@ -20,14 +23,27 @@ const Reservas = () => {
     cargarReservas();
   }, []);
 
-  const handleEstado = async (id, estado) => {
+  const handleEstado = (id, estado) => {
+    setModal({
+      open: true,
+      id,
+      estado,
+      mensaje: estado === 'confirmada' ? '¿Seguro que desea confirmar esta reserva?' : '¿Seguro que desea cancelar esta reserva?'
+    });
+  };
+
+  const confirmarModal = async () => {
     try {
-      await cambiarEstadoReserva(id, estado);
-      setReservas(reservas.map(r => r._id === id ? { ...r, estado } : r));
+      await cambiarEstadoReserva(modal.id, modal.estado);
+      setReservas(reservas.map(r => r._id === modal.id ? { ...r, estado: modal.estado } : r));
+      setModal({ open: false, id: null, estado: '', mensaje: '' });
     } catch {
       alert('Error al cambiar estado');
+      setModal({ open: false, id: null, estado: '', mensaje: '' });
     }
   };
+
+  const cerrarModal = () => setModal({ open: false, id: null, estado: '', mensaje: '' });
 
   return (
     <div>
@@ -69,7 +85,19 @@ const Reservas = () => {
           </tbody>
         </table>
       )}
-    </div>
+    {/* Modal de confirmación */}
+    {modal.open && (
+      <div className="modal-bg">
+        <div className="modal-content">
+          <h4>{modal.mensaje}</h4>
+          <div className="modal-btns">
+            <button className="confirm" onClick={confirmarModal}>Sí</button>
+            <button className="cancel" onClick={cerrarModal}>No</button>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
   );
 };
 

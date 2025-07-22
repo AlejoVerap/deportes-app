@@ -84,20 +84,21 @@ const Layout = () => {
       <div className="row">
         <aside className="col-md-3" style={{ background: '#181c2f', minHeight: '90vh', borderRadius: 16, boxShadow: '0 2px 12px #0002', padding: 0 }}>
           <div className="list-group" style={{ background: '#181c2f', borderRadius: 16 }}>
+            <div style={{ color: '#6ee7b7', fontWeight: 700, fontSize: 15, margin: '12px 0 8px 0', textAlign: 'center' }}>
+              Rol detectado: {user?.rol || 'ninguno'} {isAdmin ? '(admin menu visible)' : '(no admin)'}
+            </div>
             {isAdmin ? (
               <>
-                <Link to="/admin" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🏠 Dashboard</Link>
-                <Link to="/admin/usuarios" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>👥 Usuarios</Link>
+                <Link to="/admin" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>📅 Reservas</Link>
                 <Link to="/admin/escenarios" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🏟️ Escenarios</Link>
-                <Link to="/admin/escenarios/reservas-usuario" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🗂️ Mis Reservas</Link>
-                <Link to="/admin/escenarios/reservas" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>📅 Reservas</Link>
+                <Link to="/admin/usuarios" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>� Usuarios</Link>
                 <Link to="/admin/reportes" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>📊 Reportes</Link>
               </>
             ) : isSuperadminUserPanel ? (
               <>
-                <Link to="/escenarios" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🏟️ Escenarios</Link>
-                <Link to="/reservas-usuario" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🗂️ Mis Reservas</Link>
-                <Link to="/historial" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🗑️ Historial</Link>
+                <Link to="/usuario/escenarios" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🏟️ Escenarios</Link>
+                <Link to="/usuario/reservas-usuario" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🗂️ Mis Reservas</Link>
+                <Link to="/usuario/historial" className="list-group-item list-group-item-action" style={{ background: 'transparent', color: '#fff', fontWeight: 500 }}>🗑️ Historial</Link>
               </>
             ) : (
               <>
